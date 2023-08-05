@@ -1,10 +1,9 @@
 import React from 'react';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
 
-const ATMDeposit = ({ onChange, isDeposit,atmModeexists,isvalid}) => {
+const ATMDeposit = ({ onChange, isDeposit,atmModeexists,isvalid,totalState}) => {
   const choice = ['Deposit', 'Cash Back'];
   console.log(`ATM isDeposit: ${isDeposit}`);
   return (
@@ -64,8 +63,11 @@ function App() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2 id="total">{status}</h2>
+  
+    
+    <form onSubmit={handleSubmit} id='form'>
+      <h1>Welcome to you MIT bank</h1>
+      <h2 id="total" className={totalState >= 100 ? 'green-text' : 'red-text'}>{status}</h2>
       <label>Select an action below to continue</label>
       <select onChange={(e) => handleModeSelect(e)} name="mode" id="mode-select">
       <option id="no-selection" value=""></option>
@@ -73,7 +75,7 @@ function App() {
       <option id="cashback-selection" value="Cash Back">Cash Back</option>
       </select>
       
-      <ATMDeposit onChange={handleChange} isDeposit={isDeposit} atmModeexists = {atmModeexists} isvalid = {validTransaction}></ATMDeposit>
+      <ATMDeposit onChange={handleChange} isDeposit={isDeposit} atmModeexists = {atmModeexists} isvalid = {validTransaction} totalState = {totalState}></ATMDeposit>
     </form>
   );
 }
